@@ -9,15 +9,20 @@ class Counter extends React.Component {
 
     increase = () => {
         this.setState({ count: this.state.count + 1 });
+        this.props.parent.totalIncrease(this);
     }
 
     decrease = () => {
         this.setState((prevState) =>
             ({ count: prevState.count - 1 })
         );
+        this.props.parent.totalDecrease(this);
     }
 
-
+    clearCount = () =>{
+        console.log("调用clear")
+        this.setState({count : 0})
+    }
 
     render() {
         return (
