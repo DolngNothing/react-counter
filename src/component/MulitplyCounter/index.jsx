@@ -1,8 +1,8 @@
 import React from 'react';
-import counter from '../Counter/counter';
+import Counter from '../Counter/counter';
 
 
-class counterGroup extends React.Component{
+class CounterGroup extends React.Component{
     constructor(props){
         super(props)
         this.state={number:0}
@@ -16,3 +16,5 @@ class counterGroup extends React.Component{
         );
     }
 }
+
+export default CounterGroup;
