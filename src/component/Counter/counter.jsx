@@ -6,20 +6,20 @@ import {increaseCount,decreseCount} from '../../redux/actions'
 class Counter extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {count:store.getState().counter,input:this.props.input()};
+        this.state = {count:0,input:this.props.input()};
         store.subscribe(this.storeChange);
-        console.log(store.getState())
-        
     }
 
     storeChange = () =>{
-        this.setState({count:store.getState().increase});
+        this.setState({count:store.getState().counter});
         console.log(this.state.input)
         console.log(this.state.count)
     }
 
     increase = () => {
-        this.setState(store.dispatch(increaseCount));
+        this.setState(()=>{
+            return {count:this.state.count+1}
+        });
         this.props.parent.totalIncrease(this);
     }
 
