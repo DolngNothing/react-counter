@@ -21,8 +21,8 @@ class CounterGroup extends React.Component {
         this.setState({total:this.state.total-1})
     }
 
-    onRef = (ref) => {
-        this.state.childs.push(ref);
+    sendInput = () => {
+        return this.state.number;
     }
 
 
@@ -35,7 +35,7 @@ class CounterGroup extends React.Component {
                 <div>
                     total: {this.state.total}
                 </div>
-                {new Array(this.state.number).fill().map((value, key) => <Counter key={key} parent={ this } onRef={this.onRef}/>)}
+                {new Array(this.state.number).fill().map((value, key) => <Counter key={key} parent={ this } input={this.sendInput}/>)}
             </div>
         );
     }

@@ -4,7 +4,7 @@ import { render } from '@testing-library/react';
 class Counter extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { count: 0 };
+        this.state = { count: 0 ,input:this.props.input()};
     }
 
     increase = () => {
@@ -25,7 +25,10 @@ class Counter extends React.Component {
     }
 
     componentWillReceiveProps(){
-        this.setState({count : 0})
+        if(this.state.input!=this.props.input()){
+            this.setState({count : 0})
+            this.setState({input:this.props.input()})
+        }
     }
 
     render() {
