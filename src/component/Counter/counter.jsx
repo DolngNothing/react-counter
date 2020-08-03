@@ -1,14 +1,25 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import store from '../../redux/store'
+import {increaseCount,decreseCount} from '../../redux/actions'
 
 class Counter extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { count: 0 ,input:this.props.input()};
+        this.state = {count:store.getState().counter,input:this.props.input()};
+        store.subscribe(this.storeChange);
+        console.log(store.getState())
+        
+    }
+
+    storeChange = () =>{
+        this.setState({count:store.getState().increase});
+        console.log(this.state.input)
+        console.log(this.state.count)
     }
 
     increase = () => {
-        this.setState({ count: this.state.count + 1 });
+        this.setState(store.dispatch(increaseCount));
         this.props.parent.totalIncrease(this);
     }
 
