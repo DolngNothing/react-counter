@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import CounterGroup from './component/MulitplyCounter/index'
+import CounterGroup from './component/CounterGroup/index'
 
 function App() {
   return (
