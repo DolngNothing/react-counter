@@ -7,11 +7,11 @@ class Counter extends React.Component {
     constructor(props) {
         super(props);
         this.state = {count:0,input:this.props.input()};
-        store.subscribe(this.storeChange);
+        //store.subscribe(this.storeChange);
     }
 
     storeChange = () =>{
-        this.setState({count:store.getState().counter});
+        //this.setState({count:store.getState().counter});
         console.log(this.state.input)
         console.log(this.state.count)
     }

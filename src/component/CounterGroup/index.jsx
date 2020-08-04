@@ -1,7 +1,7 @@
 import React from 'react';
 import Counter from '../Counter/counter';
 import store from '../../redux/store'
-import {calculateTotal,setNumber} from '../../redux/actions'
+import {setNumber,reset,increaseTotal,decreaseTotal} from '../../redux/actions'
 
 
 class CounterGroup extends React.Component {
@@ -9,24 +9,27 @@ class CounterGroup extends React.Component {
         super(props)
         this.state = { number: 3 ,total:0,childs:[]}
         store.subscribe(this.storeChange);
+        console.log(store.getState());
     }
 
     storeChange = () =>{
-        this.setState(store.getState().calculateTotal);
+        this.setState({total:store.getState().calculateTotal.total});
         console.log("成功调用")
     }
 
     enterNumber = (e) => {
-        store.dispatch(setNumber(e.target.value.length==0?0:parseInt(e.target.value)))
-        this.setState({total:0})
+        console.log(e.target.value)
+        this.setState({number:e.target.value==''?0:parseInt(e.target.value)})
+       // store.dispatch(setNumber(e.target.value.length==0?0:parseInt(e.target.value)))
+        store.dispatch(reset())
     }
 
     totalIncrease = (result) => {
-        store.dispatch(calculateTotal())
+        store.dispatch(increaseTotal())
     }
 
     totalDecrease = (result) => {
-        this.setState({total:this.state.total-1})
+        store.dispatch(decreaseTotal())
     }
 
     sendInput = () => {

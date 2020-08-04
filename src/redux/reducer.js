@@ -1,8 +1,8 @@
-import {INCREASE,DECREASE,TOTAL,SETNUM} from './actionType'
-import {combineReducers} from 'redux'
+import { INCRE_TOTAL, DECREASE, TOTAL, SETNUM, RESET,DECRE_TOTAL } from './actionType'
+import { combineReducers } from 'redux'
 
-const defaultState = {count:0}
-
+const defaultState = { count: 0 }
+/*
 function counter(state=defaultState,action){ //形参默认值
     switch(action.type){
         case INCREASE:
@@ -15,15 +15,18 @@ function counter(state=defaultState,action){ //形参默认值
             return state
     }
 }
-
-const totalState = {number:0,total:0}
-function calculateTotal(state=totalState,action){
-    switch(action.type){
-        case TOTAL:
+*/
+const totalState = { total: 0 }
+function calculateTotal(state = totalState, action) {
+    switch (action.type) {
+        case INCRE_TOTAL:
             ++state.total
             return state;
-        case SETNUM:
-            state.number=action.value
+        case DECRE_TOTAL:
+            --state.total
+            return state;
+        case RESET:
+            state.total = 0;
             return state;
         default:
             return state;
@@ -31,5 +34,5 @@ function calculateTotal(state=totalState,action){
 }
 
 export const finalReducer = combineReducers({
-    counter,calculateTotal
+    calculateTotal
 })
