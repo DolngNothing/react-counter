@@ -6,7 +6,7 @@ import {increaseCount,decreseCount} from '../../redux/actions'
 class Counter extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {count:0,input:this.props.input()};
+        this.state = {count:0};
         //store.subscribe(this.storeChange);
     }
 
@@ -20,26 +20,29 @@ class Counter extends React.Component {
         this.setState(()=>{
             return {count:this.state.count+1}
         });
-        this.props.parent.totalIncrease(this);
+        this.props.increaseTotal();
     }
 
     decrease = () => {
         this.setState((prevState) =>
             ({ count: prevState.count - 1 })
         );
-        this.props.parent.totalDecrease(this);
+        this.props.decreaseTotal();
     }
 
     clearCount = () =>{
-        console.log("调用clear")
         this.setState({count : 0})
     }
 
-    componentWillReceiveProps(){
-        if(this.state.input!=this.props.input()){
-            this.setState({count : 0})
-            this.setState({input:this.props.input()})
+    componentWillReceiveProps(nextProps){
+        if(nextProps.input!=this.props.input){
+            this.setState({count:0})
+            this.setState({input:this.props.input})
         }
+    }
+
+    shouldComponentUpdate(){
+        return true;
     }
 
     render() {

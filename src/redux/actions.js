@@ -9,11 +9,3 @@ export const reset = () => ({type:RESET})
 export const setNumber = (value) => ({
     value,
     type:SETNUM})
-
-export const increaseTotalAsync = () =>{
-    return dispatch =>{
-        setTimeout(()=>{
-            dispatch(increaseTotal())
-        },200);
-    }
-}

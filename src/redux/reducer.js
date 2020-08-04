@@ -17,25 +17,19 @@ function counter(state=defaultState,action){ //形参默认值
 }
 */
 const totalState = { total: 0 ,number:3}
-function calculateTotal(state = totalState, action) {
+const calculateTotal = (state = totalState, action) => {
     switch (action.type) {
         case INCRE_TOTAL:
-            ++state.total
-            return state;
+            return {...state, total: state.total+1};
         case DECRE_TOTAL:
-            --state.total
-            return state;
+            return {...state, total: state.total-1};
         case RESET:
-            state.total = 0;
-            return state;
+            return {...state, total: 0};
         case SETNUM:
-            state.number=action.value;
-            return state;
+            return {...state, number: action.value};
         default:
             return state;
     }
 }
 
-export const finalReducer = combineReducers({
-    calculateTotal
-})
+export default calculateTotal;
