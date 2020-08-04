@@ -16,7 +16,7 @@ function counter(state=defaultState,action){ //形参默认值
     }
 }
 */
-const totalState = { total: 0 }
+const totalState = { total: 0 ,number:3}
 function calculateTotal(state = totalState, action) {
     switch (action.type) {
         case INCRE_TOTAL:
@@ -27,6 +27,9 @@ function calculateTotal(state = totalState, action) {
             return state;
         case RESET:
             state.total = 0;
+            return state;
+        case SETNUM:
+            state.number=action.value;
             return state;
         default:
             return state;

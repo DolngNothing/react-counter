@@ -14,13 +14,13 @@ class CounterGroup extends React.Component {
 
     storeChange = () =>{
         this.setState({total:store.getState().calculateTotal.total});
+        this.setState({number:store.getState().calculateTotal.number})
         console.log("成功调用")
     }
 
     enterNumber = (e) => {
         console.log(e.target.value)
-        this.setState({number:e.target.value==''?0:parseInt(e.target.value)})
-       // store.dispatch(setNumber(e.target.value.length==0?0:parseInt(e.target.value)))
+        store.dispatch(setNumber(e.target.value==''?0:parseInt(e.target.value)))
         store.dispatch(reset())
     }
 
